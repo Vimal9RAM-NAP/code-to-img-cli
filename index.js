@@ -30,25 +30,39 @@ if (!fs.existsSync(resolveInput)) {
 
 const rawCode = fs.readFileSync(resolveInput, 'utf-8');
 
-// Lightweight Syntax Highlighting Tokenizer
+// Safe Syntax Highlighting Tokenizer using Placeholders
 function highlightCode(code) {
-  // Escape HTML tags to prevent execution
+  // 1. Escape HTML special characters
   let escaped = code
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
 
-  return escaped
-    // Comments
-    .replace(/(\/\/[^\n]*|\/\*[\s\S]*?\*\/|#[^\n]*)/g, '<span class="tok-comment">$1</span>')
-    // Strings
-    .replace(/(["'`])(?:(?=(\\?))\2[\s\S])*?\1/g, '<span class="tok-string">$&</span>')
-    // Keywords
-    .replace(/\b(const|let|var|function|return|if|else|for|while|import|export|from|default|class|async|await|try|catch|new|include|int|void|def)\b/g, '<span class="tok-keyword">$1</span>')
-    // Numbers
+  // 2. Extract comments into placeholders
+  const comments = [];
+  escaped = escaped.replace(/(\/\/[^\n]*|\/\*[\s\S]*?\*\/|#[^\n]*)/g, (match) => {
+    comments.push(`<span class="tok-comment">${match}</span>`);
+    return `___COMMENT_${comments.length - 1}___`;
+  });
+
+  // 3. Extract strings into placeholders
+  const strings = [];
+  escaped = escaped.replace(/(["'])(?:(?=(\\?))\2[\s\S])*?\1/g, (match) => {
+    strings.push(`<span class="tok-string">${match}</span>`);
+    return `___STRING_${strings.length - 1}___`;
+  });
+
+  // 4. Highlight keywords, numbers, and functions on remaining plain text
+  escaped = escaped
+    .replace(/\b(const|let|var|function|return|if|else|for|while|import|export|from|default|class|async|await|try|catch|new|include|int|void|def|typedef|struct|char|float|double)\b/g, '<span class="tok-keyword">$1</span>')
     .replace(/\b(\d+)\b/g, '<span class="tok-number">$1</span>')
-    // Functions
     .replace(/\b([a-zA-Z_]\w*)(?=\()/g, '<span class="tok-fn">$1</span>');
+
+  // 5. Reinsert protected strings and comments
+  escaped = escaped.replace(/___STRING_(\d+)___/g, (_, id) => strings[id]);
+  escaped = escaped.replace(/___COMMENT_(\d+)___/g, (_, id) => comments[id]);
+
+  return escaped;
 }
 
 const highlightedCode = highlightCode(rawCode);
