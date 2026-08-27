@@ -38,6 +38,14 @@ code-to-img server.js card.html
 
 Generates a styled `card.html` file ready to open in any web browser.
 
+## Project Links
+
+- **📦 npm Package** : https://www.npmjs.com/package/code-to-img-vimal
+
+- **🐙 GitHub Repository** : https://github.com/Vimal9RAM-NAP/code-to-img-cli
+
+- **🐛 Report Issues** : https://github.com/Vimal9RAM-NAP/code-to-img-cli/issues
+
 ## 📄 License
 
 This project is open-source and available under the MIT License.
