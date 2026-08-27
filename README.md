@@ -4,6 +4,7 @@
 
 ![npm version](https://img.shields.io/npm/v/code-to-img-vimal?color=cb72f5)
 ![license](https://img.shields.io/npm/l/code-to-img-vimal)
+[![npm downloads](https://img.shields.io/npm/dm/code-to-img-vimal.svg)](https://www.npmjs.com/package/code-to-img-vimal)
 
 ## Features
 
