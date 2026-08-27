@@ -10,6 +10,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vimal9RAM-NAP/code-to-img-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vimal9RAM-NAP/code-to-img-cli/issues"
+  },
+  "homepage": "https://github.com/Vimal9RAM-NAP/code-to-img-cli#readme",
   "keywords": [
     "cli",
     "syntax-highlighter",
