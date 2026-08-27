@@ -1,6 +1,6 @@
 {
   "name": "code-to-img-vimal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convert local source code files into styled HTML cards right from your terminal.",
   "main": "index.js",
   "type": "module",
