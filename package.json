@@ -1,0 +1,22 @@
+{
+  "name": "code-to-img-vimal",
+  "version": "1.0.0",
+  "description": "Convert local source code files into styled HTML cards right from your terminal.",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "code-to-img": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "syntax-highlighter",
+    "code-generator",
+    "developer-tools",
+    "npm"
+  ],
+  "author": "Vimal",
+  "license": "MIT"
+}
